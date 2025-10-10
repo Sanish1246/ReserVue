@@ -1,6 +1,7 @@
 new Vue({
   el: "#app",
   data: {
+    currentPage: 1,
     systemMessage: null,
     currentPage: 1,
     homeOpen: true,
@@ -17,6 +18,21 @@ new Vue({
     goToPreviousPage() {
       this.currentPage--;
     },
+    viewlesson(lesson, pageName) {
+      this.displayedLesson = lesson;
+      this.homeOpen = false;
+      this.lessonOpen = true;
+      this.previousPage = pageName; //This allows us to know where we should go after pressing the back page, since the lesson page can be accessed from home and from search
+    },
+    //Function to display system messages for a certain amount of time
+    showSystemMessage(msg, duration) {
+      this.systemMessage = msg;
+      if (this.messageTimeout) clearTimeout(this.messageTimeout);
+      this.messageTimeout = setTimeout(() => {
+        this.systemMessage = null;
+        this.messageTimeout = null;
+      }, duration);
+    },
     addToCart(lesson) {
       //Checking if the lesson is already present in the cart
       const existingItem = this.cart.find(
@@ -30,6 +46,24 @@ new Vue({
         this.showSystemMessage(`Lesson added to cart`, 2000);
       }
       this.total += lesson.price;
+    },
+    sortlessons(order) {
+      this.currentOrder = order;
+      if (this.currentCategory !== "All") {
+        const key = this.currentCategory;
+        this.lessons.sort((a, b) => {
+          if (this.currentOrder === "Asc") {
+            // sorting based on whether the field contains letters or numbers
+            return typeof a[key] === "string" //Checking the data type of the filter applied
+              ? a[key].localeCompare(b[key])
+              : a[key] - b[key];
+          } else {
+            return typeof a[key] === "string"
+              ? b[key].localeCompare(a[key])
+              : b[key] - a[key];
+          }
+        });
+      }
     },
   },
   computed: {

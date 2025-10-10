@@ -34,12 +34,71 @@
       <div id="home" v-if="homeOpen">
         <h1>List of lessons</h1>
         <div id="home-container">
+          <!-- Filters and sorting for the lessons -->
+          <div id="lesson-filter-container">
+            <h2>Category</h2>
+            <input
+              type="radio"
+              name="category"
+              value="All"
+              checked
+              @click="filterLessons('All')"
+            />
+            <label>All</label><br />
+            <input
+              type="radio"
+              name="category"
+              value="subject"
+              @click="filterLessons('subject')"
+            />
+            <label>Subject</label><br />
+            <input
+              type="radio"
+              name="category"
+              value="location"
+              @click="filterLessons('location')"
+            />
+            <label>Location</label><br />
+            <input
+              type="radio"
+              name="category"
+              value="price"
+              @click="filterLessons('price')"
+            />
+            <label>Price</label><br />
+            <input
+              type="radio"
+              name="category"
+              value="spaces"
+              @click="filterLessons('spaces')"
+            />
+            <label>Spaces</label><br />
+
+            <h2>Sort by</h2>
+            <input
+              type="radio"
+              value="Ascending"
+              name="sortby"
+              checked
+              @click="sortlessons('Asc')"
+            />
+            <label for="html">Ascending</label><br />
+            <input
+              type="radio"
+              value="Descending"
+              name="sortby"
+              @click="sortlessons('Desc')"
+            />
+            <label for="css">Descending</label><br />
+          </div>
+
           <!-- Displaying the products -->
           <div class="card-container">
             <div
               v-for="(lesson, idx) in paginatedlessons"
               :key="lesson.tutor"
               class="card"
+              @click="viewlesson(lesson, 'home')"
             >
               <div class="lesson-details">
                 <div class="lesson-details-container">
@@ -79,6 +138,43 @@
           >
             Next &rarr;
           </button>
+        </div>
+      </div>
+
+      <!-- Lesson details page -->
+      <div v-if="lessonOpen" id="lesson-section">
+        <button class="back-button" @click="exitlessonPage()">
+          &larr;Back
+        </button>
+        <h1>Lesson information</h1>
+        <div id="lesson-info">
+          <img
+            id="lesson-image"
+            :src="`./images/${displayedLesson.subject.toLowerCase()}.svg`"
+            alt="lesson Image"
+          />
+          <div id="lesson-description">
+            <h1>
+              {{ displayedLesson.subject }} lesson by {{ displayedLesson.tutor
+              }}
+            </h1>
+            <hr />
+            <p>{{ displayedLesson.subject }}</p>
+          </div>
+        </div>
+        <div id="lesson-buttons">
+          <p><strong>Price:</strong> £{{displayedLesson.price}}</p>
+          <p><strong>Spaces:</strong> {{displayedLesson.spaces}}</p>
+
+          <div id="action-buttons">
+            <button
+              id="add-to-cart-btn"
+              :class="{ 'disabled-btn': displayedLesson.spaces==0 }"
+              @click="addToCart(displayedLesson)"
+            >
+              🛒Add to cart
+            </button>
+          </div>
         </div>
       </div>
     </div>
