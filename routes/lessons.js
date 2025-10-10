@@ -8,6 +8,7 @@ router.get("/lessons", async (req, res) => {
 
   try {
     let lessons = await db.collection("Lessons").find().toArray();
+    console.log(lessons.length);
     res.status(200).json(lessons);
   } catch (err) {
     console.error("Error fetching lessons:", err);

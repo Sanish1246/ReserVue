@@ -36,7 +36,8 @@ body {
   }
 }
 
-.nav-icon {
+.nav-icon,
+.card-icon {
   margin-left: 1rem;
   border: none;
   background: none;
@@ -84,4 +85,161 @@ body {
   background-color: hsl(10, 80%, 70%);
   border-color: white;
   color: white;
+}
+
+#system-message {
+  position: fixed;
+  top: 2rem;
+  width: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fffbe6;
+  color: #333;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  text-align: center;
+  z-index: 9999;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+#home-container {
+  display: flex;
+  flex-direction: row;
+}
+
+h1 {
+  text-align: center;
+}
+
+#lesson-filter-container {
+  margin-left: 1rem;
+}
+
+#lesson-filter-container input {
+  margin-bottom: 1rem;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  width: 75%;
+  margin-left: 5.5rem;
+  animation: fade-in 1s ease-in;
+}
+
+.search-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  width: 75%;
+  margin: 0 auto;
+  animation: fade-in 1s ease-in;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  box-shadow: 5px 5px 10px hsl(30, 10%, 70%);
+  background: white;
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: translateY(-0.3rem);
+  transition: transform 0.2s;
+}
+
+.card-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 20rem;
+}
+
+.card .card-img-container img {
+  border-radius: 1rem;
+  width: 80%;
+  max-height: 10rem;
+  object-fit: cover;
+}
+
+.lesson-details,
+.card-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.lesson-details-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-button {
+  background: hsl(42, 53%, 85%);
+  width: 100%;
+  display: flex;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.add-button img,
+.remove-button img {
+  margin: 0 auto;
+}
+
+.add-button:hover {
+  background: linear-gradient(90deg, hsl(30, 40%, 60%), hsl(20, 30%, 45%));
+}
+
+.lesson-navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-top: 1rem;
+}
+
+.lesson-navigation button {
+  background-color: white;
+  border: none;
+  box-shadow: 5px 5px 5px hsl(30, 10%, 70%);
+  width: 10rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+}
+
+.lesson-navigation button:hover {
+  cursor: pointer;
+  background: linear-gradient(90deg, hsl(30, 50%, 65%), hsl(20, 40%, 55%));
+  color: white;
+}
+
+.lesson-navigation button:disabled {
+  opacity: 0.9;
+  cursor: not-allowed;
+}
+
+.lesson-navigation p {
+  margin: 0 auto;
+  font-size: 1rem;
+  border: 1px solid black;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: white;
+  margin-top: 0.5rem;
 }

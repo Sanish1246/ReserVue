@@ -29,6 +29,59 @@
 
       <!-- System message that will be displayed after certain operations -->
       <div id="system-message" v-if="systemMessage">{{systemMessage}}</div>
+
+      <!-- Home section -->
+      <div id="home" v-if="homeOpen">
+        <h1>List of lessons</h1>
+        <div id="home-container">
+          <!-- Displaying the products -->
+          <div class="card-container">
+            <div
+              v-for="(lesson, idx) in paginatedlessons"
+              :key="lesson.tutor"
+              class="card"
+            >
+              <div class="lesson-details">
+                <div class="lesson-details-container">
+                  <p><strong>Tutor:</strong> {{lesson.tutor}}</p>
+                  <p><strong>Subject:</strong> {{lesson.subject}}</p>
+                  <p><strong>Location:</strong> {{lesson.location}}</p>
+                  <p><strong>Price:</strong> £{{lesson.price}}</p>
+                  <p><strong>Spaces:</strong> {{lesson.spaces}}</p>
+                </div>
+                <div class="card-img-container">
+                  <img :src="`./images/${lesson.subject.toLowerCase()}.svg`" />
+                </div>
+              </div>
+              <div
+                class="add-button"
+                :class="{ 'disabled-btn': lesson.spaces==0 }"
+                @click.stop="addToCart(lesson)"
+              >
+                <img
+                  src="./images/cart-light.svg"
+                  class="card-icon"
+                  id="card-cart"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-navigation">
+          <button :disabled="currentPage<=1" @click="goToPreviousPage">
+            &larr; Previous
+          </button>
+          <p>{{currentPage}}</p>
+          <button
+            :disabled="currentPage>=lessons.length/9"
+            @click="goToNextPage"
+          >
+            Next &rarr;
+          </button>
+        </div>
+      </div>
     </div>
+    <script type="module" src="./script.js"></script>
   </body>
 </html>
