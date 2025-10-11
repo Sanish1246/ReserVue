@@ -141,6 +141,71 @@
         </div>
       </div>
 
+            <!-- Cart page -->
+      <div v-if="cartOpen" id="cart-section">
+        <h1>Cart</h1>
+        <div v-if="cart.length==0" id="empty-cart">
+          <p>Your cart is empty</p>
+        </div>
+        <div v-else class="cart-container">
+          <div
+            v-for="(lesson, idx) in cart"
+            :key="lesson.tutor"
+            class="card"
+            @click="viewlesson(lesson, 'home')"
+          >
+            <div class="lesson-details">
+              <div class="lesson-details-container">
+                <p><strong>Tutor:</strong> {{lesson.tutor}}</p>
+                <p><strong>Subject:</strong> {{lesson.subject}}</p>
+                <p><strong>Location:</strong> {{lesson.location}}</p>
+                <p><strong>Price:</strong> £{{lesson.price}}</p>
+                <p><strong>Spaces:</strong> {{lesson.spaces}}</p>
+              </div>
+              <div class="card-img-container">
+                <img :src="`./images/${lesson.subject.toLowerCase()}.svg`" />
+              </div>
+            </div>
+            <div class="remove-button" @click.stop="removeItem(lesson)">
+              <img src="./images/remove.svg" class="card-icon" id="card-cart" />
+            </div>
+          </div>
+        </div>
+        <p id="displayed-total"><strong>Total:</strong> ${{total}}</p>
+        <hr />
+
+        <!-- Checkout section -->
+        <div v-if="cart.length!=0" id="cart-footer">
+          <h1>Checkout</h1>
+          <div id="payment-details">
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="John"
+              v-model="name"
+              required
+            />
+
+            <label for="phone">Phone:</label>
+            <input
+              type="text"
+              id="phone-no"
+              placeholder="12345678"
+              required
+              v-model="phoneNo"
+            />
+          </div>
+          <button
+            @click="checkout()"
+            id="checkout-button"
+            :disabled="!name || !phoneNo"
+          >
+            🛒Checkout
+          </button>
+        </div>
+      </div>
+
       <!-- Lesson details page -->
       <div v-if="lessonOpen" id="lesson-section">
         <button class="back-button" @click="exitlessonPage()">

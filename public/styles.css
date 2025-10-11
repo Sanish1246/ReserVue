@@ -243,3 +243,162 @@ h1 {
   background: white;
   margin-top: 0.5rem;
 }
+
+#empty-cart {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.cart-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  width: 75%;
+  animation: fade-in 1s ease-in;
+  margin: 0 auto;
+}
+
+.remove-button {
+  background-color: hsl(10, 80%, 85%);
+  width: 100%;
+  display: flex;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.remove-button:hover {
+  cursor: pointer;
+  background-color: hsl(10, 80%, 70%);
+  border-color: white;
+  color: white;
+}
+
+#displayed-total {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+#cart-footer {
+  text-align: center;
+  padding-bottom: 2rem;
+  margin-top: 1rem;
+}
+
+#checkout-button {
+  background: hsl(120, 30%, 85%);
+  color: hsl(120, 30%, 20%);
+  border: 1px solid hsl(120, 30%, 30%);
+  border-radius: 1rem;
+  width: 10rem;
+  height: 2rem;
+}
+
+#checkout-button:hover {
+  cursor: pointer;
+  background-color: hsl(120, 40%, 50%);
+  border-color: white;
+  color: white;
+}
+
+#checkout-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#payment-details {
+  display: flex;
+  flex-direction: row;
+  background: linear-gradient(180deg, hsl(42, 33%, 90%), hsl(30, 30%, 80%));
+  box-shadow: 5px 5px 10px hsl(30, 10%, 70%);
+  border-radius: 1rem;
+  margin: auto;
+  width: 60%;
+  height: 100%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-top: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+#payment-details input {
+  width: 40%;
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid hsl(30, 20%, 40%);
+  text-align: center;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.back-button {
+  margin-top: 0.5rem;
+  box-shadow: 5px 5px 5px hsl(30, 10%, 70%);
+  border: none;
+  border-radius: 1rem;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+}
+
+.back-button:hover {
+  cursor: pointer;
+  background: linear-gradient(90deg, hsl(30, 50%, 65%), hsl(20, 40%, 55%));
+  color: white;
+}
+
+#lesson-section {
+  animation: fade-in 0.5s ease-in;
+}
+
+#lesson-info {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10rem;
+  margin-right: 10rem;
+  margin-top: 3rem;
+}
+
+#lesson-info img {
+  background: none;
+  max-width: 20rem;
+  margin-right: 5rem;
+}
+
+#lesson-description p {
+  font-size: 1.2rem;
+}
+
+#lesson-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+#lesson-buttons #action-buttons {
+  transform: translateX(10rem);
+}
+
+#action-buttons button {
+  width: 12rem;
+  height: 2.5rem;
+  margin-right: 3rem;
+  border-radius: 1rem;
+  box-shadow: 5px 5px 10px hsl(30, 10%, 70%);
+  font-size: 1.2rem;
+  border: 1px solid black;
+}
+
+#add-to-cart-btn {
+  background: hsl(42, 53%, 85%);
+}
+
+#add-to-cart-btn:hover {
+  cursor: pointer;
+  background: linear-gradient(90deg, hsl(30, 40%, 60%), hsl(20, 30%, 45%));
+}

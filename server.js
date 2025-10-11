@@ -6,6 +6,7 @@ import { connectToDb } from "./db.js";
 
 //Routes
 import lessonRoutes from "./routes/lessons.js";
+import ordersRoutes from "./routes/orders.js";
 
 //Initializing express
 const app = express();
@@ -32,6 +33,7 @@ app.get("/", (req, res) => {
 
 //Routes for our requests
 app.use("/", lessonRoutes);
+app.use("/", ordersRoutes);
 
 const port = 8000;
 const hostname = "localhost";
