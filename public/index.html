@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ReserVue</title>
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="styles.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap"
       rel="stylesheet"
@@ -132,7 +132,7 @@
                   <p><strong>Spaces:</strong> {{lesson.spaces}}</p>
                 </div>
                 <div class="card-img-container">
-                  <img :src="`./images/${lesson.subject.toLowerCase()}.svg`" />
+                  <img :src="`${lesson.images}`" />
                 </div>
               </div>
               <div
@@ -186,7 +186,7 @@
                 <p><strong>Spaces:</strong> {{lesson.spaces}}</p>
               </div>
               <div class="card-img-container">
-                <img :src="`./images/${lesson.subject.toLowerCase()}.svg`" />
+                <img :src="`${lesson.images}`" />
               </div>
             </div>
             <div class="remove-button" @click.stop="removeItem(lesson)">
@@ -238,7 +238,7 @@
         <div id="lesson-info">
           <img
             id="lesson-image"
-            :src="`./images/${displayedLesson.subject.toLowerCase()}.svg`"
+            :src="`${displayedLesson.images}`"
             alt="lesson Image"
           />
           <div id="lesson-description">
@@ -247,7 +247,7 @@
               }}
             </h1>
             <hr />
-            <p>{{ displayedLesson.subject }}</p>
+            <p>{{ displayedLesson.description}}</p>
           </div>
         </div>
         <div id="lesson-buttons">
@@ -286,7 +286,7 @@
                 <p><strong>Spaces:</strong> {{lesson.spaces}}</p>
               </div>
               <div class="card-img-container">
-                <img :src="`./images/${lesson.subject.toLowerCase()}.svg`" />
+                <img :src="`${lesson.images}`" />
               </div>
             </div>
             <div
@@ -316,6 +316,6 @@
         </div>
       </div>
     </div>
-    <script type="module" src="./js/script.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
