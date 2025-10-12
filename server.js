@@ -3,6 +3,7 @@ import session from "express-session";
 import path from "path";
 import { fileURLToPath } from "url";
 import { connectToDb } from "./db.js";
+import fs from "fs";
 
 //Routes
 import lessonRoutes from "./routes/lessons.js";
@@ -33,6 +34,23 @@ app.use(
     cookie: { secure: false },
   })
 );
+
+// Serve lesson images with existence check
+app.get("/images/:imageName", (req, res, next) => {
+  const imagePath = path.join(
+    __dirname,
+    "public",
+    "images",
+    req.params.imageName
+  );
+
+  fs.access(imagePath, fs.constants.F_OK, (err) => {
+    if (err) {
+      return res.status(404).json({ error: "Lesson image not found" });
+    }
+    next();
+  });
+});
 //Serving the public folder
 app.use(express.static(path.join(__dirname, "public")));
 
