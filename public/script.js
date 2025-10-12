@@ -175,6 +175,53 @@ new Vue({
       else if (this.previousPage === "home") this.homeOpen = true;
     },
 
+    searchlessons() {
+      //If the search query string is cleared, close the search page
+      if (this.searchQuery.trim() === "") {
+        this.searchResult = [];
+        this.goHome();
+        return;
+      }
+
+      //Clearing the previous timeout
+      clearTimeout(this.searchDebounce);
+
+      //Adding a debounce to the query to avoid bombarding the server with requests
+      //The debounce will ensure that requests are sent with a delay of 300ms to avoid overloading the server
+      //It also gives the user a bit of time to correct spelling mistakes
+      this.searchDebounce = setTimeout(() => {
+        fetch(`http://localhost:8000/search/${this.searchQuery}`)
+          .then((res) => res.json())
+          .then((data) => {
+            this.searchResult = data;
+            for (const lesson of this.searchResult) {
+              const existingItem = this.cart.find(
+                (item) => item.lessonID === lesson.lessonID
+              );
+
+              //To display the updated spaces while the item is in the cart, but checkout is not done yet
+              if (existingItem) {
+                lesson.spaces--;
+              }
+            }
+            this.homeOpen = false;
+            this.cartOpen = false;
+            this.lessonOpen = false;
+            this.searchOpen = true;
+          })
+          .catch((err) => this.showSystemMessage("❌ Error: " + err, 2000));
+      }, 300);
+    },
+
+    clearSearch() {
+      this.searchQuery = "";
+      this.lessonOpen = false;
+      this.searchResult = [];
+      this.homeOpen = true;
+      this.searchOpen = false;
+      this.cartOpen = false;
+      this.currentPage = 1;
+    },
     goHome() {
       this.homeOpen = true;
       this.lessonOpen = false;

@@ -3,27 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles.css" />
+    <title>ReserVue</title>
+    <link rel="stylesheet" href="./css/styles.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap"
       rel="stylesheet"
     />
+    <link href="./images/favicon.ico" rel="icon" type="image/x-icon" />
     <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
-    <title>ReserVue</title>
   </head>
+
   <body>
     <div id="app">
+      <!-- Navigation bar -->
       <nav id="navbar">
         <h1 id="website-title">ReserVue</h1>
         <div class="search-bar">
-          <input placeholder="Search for a lesson" />
-          <button id="search-button">Clear</button>
+          <input
+            placeholder="Search for a lesson"
+            v-model="searchQuery"
+            @input="searchlessons()"
+          />
+          <button id="search-button" @click="clearSearch()">Clear</button>
         </div>
 
         <div id="top-links">
-          <img src="./images/home.svg" class="nav-icon" id="home" />
-          <img src="./images/moon.svg" class="nav-icon" id="toggle-mode" />
-          <img src="./images/cart.svg" class="nav-icon" id="cart" />
+          <img
+            src="./images/home.svg"
+            class="nav-icon"
+            id="home"
+            @click="goHome()"
+          />
+          <img
+            src="./images/moon.svg"
+            class="nav-icon"
+            id="toggle-mode"
+            @click="toggleMode()"
+          />
+          <img
+            src="./images/cart.svg"
+            class="nav-icon"
+            id="cart"
+            :class="{ 'disabled-icon': cart.length === 0 }"
+            @click="cart.length > 0 && viewCart()"
+          />
         </div>
       </nav>
 
@@ -141,7 +164,7 @@
         </div>
       </div>
 
-            <!-- Cart page -->
+      <!-- Cart page -->
       <div v-if="cartOpen" id="cart-section">
         <h1>Cart</h1>
         <div v-if="cart.length==0" id="empty-cart">
@@ -242,7 +265,57 @@
           </div>
         </div>
       </div>
+
+      <!-- Search results page -->
+      <div id="search-results" v-if="searchOpen">
+        <h1 v-if="searchResult.length==0">No lesson found!</h1>
+        <h1 v-else>Search results</h1>
+        <div v-if="searchResult.length>0" class="search-container">
+          <div
+            v-for="(lesson, idx) in paginatedSearchResults"
+            :key="lesson.tutor"
+            class="card"
+            @click="viewlesson(lesson, 'search')"
+          >
+            <div class="lesson-details">
+              <div class="lesson-details-container">
+                <p><strong>Tutor:</strong> {{lesson.tutor}}</p>
+                <p><strong>Subject:</strong> {{lesson.subject}}</p>
+                <p><strong>Location:</strong> {{lesson.location}}</p>
+                <p><strong>Price:</strong> £{{lesson.price}}</p>
+                <p><strong>Spaces:</strong> {{lesson.spaces}}</p>
+              </div>
+              <div class="card-img-container">
+                <img :src="`./images/${lesson.subject.toLowerCase()}.svg`" />
+              </div>
+            </div>
+            <div
+              class="add-button"
+              :class="{ 'disabled-btn': lesson.spaces==0 }"
+              @click.stop="addToCart(lesson)"
+            >
+              <img
+                src="./images/cart-light.svg"
+                class="card-icon"
+                id="card-cart"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="lesson-navigation" v-if="searchResult.length>0">
+          <button :disabled="currentPage <= 1" @click="goToPreviousPage">
+            &larr; Previous
+          </button>
+          <p>{{currentPage}}</p>
+          <button
+            :disabled="currentPage >= totalSearchPages"
+            @click="goToNextPage"
+          >
+            Next &rarr;
+          </button>
+        </div>
+      </div>
     </div>
-    <script type="module" src="./script.js"></script>
+    <script type="module" src="./js/script.js"></script>
   </body>
 </html>
