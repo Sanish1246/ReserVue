@@ -8,6 +8,16 @@ import { connectToDb } from "./db.js";
 import lessonRoutes from "./routes/lessons.js";
 import ordersRoutes from "./routes/orders.js";
 
+// logger middleware function
+function logger(req, res, next) {
+  const now = new Date();
+  console.log(`[${now.toISOString()}] ${req.method} ${req.originalUrl}`);
+  console.log("Headers:", req.headers);
+  console.log("Body:", req.body);
+  console.log("--------------------------------------------------");
+  next();
+}
+
 //Initializing express
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -30,6 +40,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
+
+app.use(logger);
 
 //Routes for our requests
 app.use("/", lessonRoutes);
