@@ -44,7 +44,8 @@ body {
   height: 1.5rem;
 }
 
-.disabled-icon {
+.disabled-icon,
+.disabled-btn {
   opacity: 0.5;
   pointer-events: none;
 }
@@ -334,7 +335,7 @@ h1 {
 }
 
 .back-button {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   box-shadow: 5px 5px 5px hsl(30, 10%, 70%);
   border: none;
   border-radius: 1rem;
@@ -401,4 +402,79 @@ h1 {
 #add-to-cart-btn:hover {
   cursor: pointer;
   background: linear-gradient(90deg, hsl(30, 40%, 60%), hsl(20, 30%, 45%));
+}
+
+/* Stylings for dark mode */
+.dark-mode {
+  background-color: hsl(30, 15%, 10%);
+  color: hsl(36, 100%, 90%);
+  transition: background 0.2s, color 0.2s;
+}
+
+.dark-mode #system-message {
+  background: hsl(30, 15%, 15%);
+  color: hsl(36, 100%, 90%);
+  border: 1px solid hsl(36, 100%, 90%);
+}
+
+.dark-mode hr {
+  border: 1px solid hsl(36, 100%, 90%);
+}
+
+.dark-mode .lesson-navigation button,
+.dark-mode .lesson-navigation p,
+.dark-mode .back-button {
+  background-color: hsl(30, 15%, 15%);
+  color: hsl(36, 100%, 90%);
+  box-shadow: 5px 5px 5px hsl(30, 10%, 30%);
+}
+
+.dark-mode .card {
+  background-color: hsl(30, 15%, 5%);
+  color: hsl(36, 100%, 90%);
+  border: none;
+  box-shadow: 5px 5px 10px hsl(30, 10%, 30%);
+}
+
+.dark-mode #navbar {
+  background: linear-gradient(90deg, hsl(30, 20%, 20%), hsl(10, 30%, 20%));
+  box-shadow: 5px 5px 10px hsl(30, 10%, 30%);
+}
+
+.dark-mode #navbar input,
+.dark-mode #payment-details input {
+  background-color: hsl(30, 15%, 12%);
+  color: hsl(36, 100%, 90%);
+  border: 1px solid hsl(36, 100%, 60%);
+}
+
+.dark-mode #navbar button {
+  background-color: hsl(30, 15%, 12%);
+  color: hsl(36, 100%, 90%);
+  border: 1px solid hsl(36, 100%, 60%);
+}
+
+.dark-mode #navbar button:hover {
+  background: linear-gradient(90deg, hsl(30, 20%, 20%), hsl(10, 30%, 20%));
+  color: hsl(36, 100%, 90%);
+  border-color: hsl(36, 100%, 90%);
+}
+
+.dark-mode .add-button {
+  background: hsl(42, 53%, 70%);
+}
+
+.dark-mode .add-button:hover {
+  background: linear-gradient(90deg, hsl(30, 40%, 60%), hsl(20, 30%, 45%));
+}
+
+.dark-mode #payment-details {
+  background: linear-gradient(180deg, hsl(30, 15%, 15%), hsl(30, 15%, 10%));
+  border: none;
+  box-shadow: 5px 5px 10px hsl(30, 10%, 30%);
+}
+
+.dark-mode #action-buttons button {
+  border: 2px solid white;
+  box-shadow: none;
 }
