@@ -40,13 +40,14 @@
             id="toggle-mode"
             @click="toggleMode()"
           />
-          <img
-            src="./images/cart.svg"
-            class="nav-icon"
-            id="cart"
-            :class="{ 'disabled-icon': cart.length === 0 }"
-            @click="cart.length > 0 && viewCart()"
-          />
+          <button :disabled="cart.length === 0 ">
+            <img
+              src="./images/cart.svg"
+              class="cart-icon"
+              id="cart"
+              @click="cart.length > 0 && viewCart()"
+            />
+          </button>
         </div>
       </nav>
 
@@ -135,9 +136,9 @@
                   <img :src="`${lesson.images}`" />
                 </div>
               </div>
-              <div
+              <button
                 class="add-button"
-                :class="{ 'disabled-btn': lesson.spaces==0 }"
+                :disabled="  lesson.spaces==0 "
                 @click.stop="addToCart(lesson)"
               >
                 <img
@@ -145,7 +146,7 @@
                   class="card-icon"
                   id="card-cart"
                 />
-              </div>
+              </button>
             </div>
           </div>
         </div>
@@ -171,12 +172,7 @@
           <p>Your cart is empty</p>
         </div>
         <div v-else class="cart-container">
-          <div
-            v-for="(lesson, idx) in cart"
-            :key="lesson.tutor"
-            class="card"
-            @click="viewlesson(lesson, 'home')"
-          >
+          <div v-for="(lesson, idx) in cart" :key="lesson.tutor" class="card">
             <div class="lesson-details">
               <div class="lesson-details-container">
                 <p><strong>Tutor:</strong> {{lesson.tutor}}</p>
@@ -189,9 +185,9 @@
                 <img :src="`${lesson.images}`" />
               </div>
             </div>
-            <div class="remove-button" @click.stop="removeItem(lesson)">
+            <button class="remove-button" @click.stop="removeItem(lesson)">
               <img src="./images/remove.svg" class="card-icon" id="card-cart" />
-            </div>
+            </button>
           </div>
         </div>
         <p id="displayed-total"><strong>Total:</strong> ${{total}}</p>
@@ -289,9 +285,9 @@
                 <img :src="`${lesson.images}`" />
               </div>
             </div>
-            <div
+            <button
               class="add-button"
-              :class="{ 'disabled-btn': lesson.spaces==0 }"
+              :disabled="  lesson.spaces==0 "
               @click.stop="addToCart(lesson)"
             >
               <img
@@ -299,7 +295,7 @@
                 class="card-icon"
                 id="card-cart"
               />
-            </div>
+            </button>
           </div>
         </div>
         <div class="lesson-navigation" v-if="searchResult.length>0">

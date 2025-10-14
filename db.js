@@ -19,7 +19,7 @@ export async function connectToDb() {
     await client.connect();
     await client.db("admin").command({ ping: 1 });
     console.log(
-      "Pinged your deployment. You successfully connected to the E-commerce databse on MongoDB!"
+      "Pinged your deployment. You successfully connected to the ReserVue databse on MongoDB!"
     );
     return client;
   } catch (error) {
