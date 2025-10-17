@@ -144,7 +144,7 @@ new Vue({
         total: this.total,
       };
 
-      fetch("http://localhost:8000/order", {
+      fetch("https://reservue-backend.onrender.com/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(order),
@@ -152,10 +152,13 @@ new Vue({
         .then((res) => res.json())
         .then((data) => {
           // Update lesson spaces after order is created
-          return fetch(`http://localhost:8000/order/${data.orderId}/update`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-          });
+          return fetch(
+            `https://reservue-backend.onrender.com/order/${data.orderId}/update`,
+            {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+            }
+          );
         })
         .then((res) => res.json())
         .then((message) => {
@@ -190,7 +193,9 @@ new Vue({
       //The debounce will ensure that requests are sent with a delay of 300ms to avoid overloading the server
       //It also gives the user a bit of time to correct spelling mistakes
       this.searchDebounce = setTimeout(() => {
-        fetch(`http://localhost:8000/search/${this.searchQuery}`)
+        fetch(
+          `https://reservue-backend.onrender.com/search/${this.searchQuery}`
+        )
           .then((res) => res.json())
           .then((data) => {
             this.searchResult = data;
@@ -263,7 +268,7 @@ new Vue({
 
   //Function that will be called upon mounting of the app to fetch the list of lessons
   mounted() {
-    fetch("http://localhost:8000/lessons")
+    fetch("https://reservue-backend.onrender.com/lessons")
       .then((res) => res.json())
       .then((data) => {
         this.lessons = [...data];
