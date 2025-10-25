@@ -29,7 +29,7 @@ new Vue({
   },
 
   computed: {
-    //Applying pagination when needed as we only display a maximum of 9 items at a time
+    //Applying pagination when needed as we only display a maximum of 9 lessons at a time
     paginatedSearchResults() {
       const start = (this.currentPage - 1) * 9;
       return this.searchResult.slice(start, start + 9).filter(Boolean);
@@ -53,7 +53,7 @@ new Vue({
     toggleMode() {
       document.body.classList.toggle("dark-mode");
       this.lightMode = !this.lightMode;
-      //Changing the icon depending on the mode
+      //Changing the icon depending on the current theme
       document.getElementById("toggle-mode").src = this.lightMode
         ? "./images/moon.svg"
         : "./images/light.svg";
@@ -97,7 +97,8 @@ new Vue({
       this.cartOpen = true;
     },
     removeItem(lesson) {
-      this.cart = this.cart.filter((item) => item.tutor !== lesson.tutor);
+      //Removing the lesson from the cart using its id
+      this.cart = this.cart.filter((item) => item.lessonID !== lesson.lessonID);
       this.total -= lesson.price;
       lesson.spaces++;
       this.showSystemMessage(`Lesson removed from cart`, 2000);

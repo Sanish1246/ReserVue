@@ -4,6 +4,7 @@ body {
   font-family: "Quicksand", sans-serif;
 }
 
+/* Stylings for navbar */
 #navbar {
   display: flex;
   justify-content: space-around;
@@ -117,6 +118,7 @@ body {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
+/* Stylings for the main section */
 #home-container {
   display: flex;
   flex-direction: row;
@@ -136,7 +138,7 @@ h1 {
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /*3x3 grid*/
   gap: 1rem;
   width: 75%;
   margin-left: 5.5rem;
@@ -227,6 +229,7 @@ h1 {
   background: linear-gradient(90deg, hsl(30, 40%, 60%), hsl(20, 30%, 45%));
 }
 
+/* Navigation buttons */
 .lesson-navigation {
   display: flex;
   flex-direction: row;
@@ -266,6 +269,7 @@ h1 {
   margin-top: 0.5rem;
 }
 
+/* Stylings for cart page */
 #empty-cart {
   text-align: center;
   font-size: 1.5rem;
@@ -329,6 +333,7 @@ h1 {
   cursor: not-allowed;
 }
 
+/* Payment section */
 #payment-details {
   display: flex;
   flex-direction: row;
@@ -372,6 +377,7 @@ h1 {
   color: white;
 }
 
+/* Stylings for lesson details page */
 #lesson-section {
   animation: fade-in 0.5s ease-in;
 }
