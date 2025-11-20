@@ -10,4 +10,4 @@ git clone https://github.com/Sanish1246/ReserVue.git
 
 ## Accessing the backend
 
-The backend for this application is available on https://github.com/Sanish1246/ReserVue-Backend
+The backend for this application is available on https://github.com/Sanish1246/ReserVue
