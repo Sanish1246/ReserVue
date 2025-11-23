@@ -91,10 +91,14 @@ new Vue({
     },
 
     viewCart() {
-      this.searchOpen = false;
-      this.homeOpen = false;
-      this.lessonOpen = false;
-      this.cartOpen = true;
+      if ((cartOpen = true)) {
+        this.goHome();
+      } else {
+        this.searchOpen = false;
+        this.homeOpen = false;
+        this.lessonOpen = false;
+        this.cartOpen = true;
+      }
     },
     removeItem(lesson) {
       //Removing the lesson from the cart using its id
