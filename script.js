@@ -91,7 +91,7 @@ new Vue({
     },
 
     viewCart() {
-      if ((cartOpen = true)) {
+      if ((this.cartOpen = true)) {
         this.goHome();
       } else {
         this.searchOpen = false;
